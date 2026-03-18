@@ -1471,14 +1471,16 @@ def main():
         dummy_input,
         sys.argv[2],
         export_params=True,
-        opset_version=15,
+        opset_version=18,
         do_constant_folding=True,
         input_names=['input'],
         output_names=['output'],
         dynamic_axes={
             'input': {0: 'batch_size'},
             'output': {0: 'batch_size'}
-        }
+        },
+        dynamo=True,
+        external_data=False
     )
     print("Model exported to ONNX: " + sys.argv[2], flush=True)
     tmp_dir.cleanup()
